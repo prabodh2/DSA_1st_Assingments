@@ -1,6 +1,5 @@
 #include <iostream>
 #include <string>
-
 using namespace std;
 
 struct Book {
@@ -8,10 +7,8 @@ struct Book {
     string author;
     int numberOfCopies;
     Book* next_book;
-
     Book(string t, string a, int copies) : title(t), author(a), numberOfCopies(copies), next_book(nullptr) {}
 };
-
 void addBook(Book*& head, string title, string author, int copies) {
     Book* currentBook = head;
     
@@ -23,10 +20,8 @@ void addBook(Book*& head, string title, string author, int copies) {
         }//book exists. so adding new copies to the library.
         currentBook = currentBook->next_book;
     }
-
     //adds new book.
     Book* newBook = new Book(title, author, copies);
-
     if (!head) {
         head = newBook;
     } else {
@@ -36,46 +31,36 @@ void addBook(Book*& head, string title, string author, int copies) {
         }
         currentBook->next_book = newBook;
     }
-
     cout << "Book added successfully." << endl;
 }
-
 void borrowBook(Book*& head) {
     string title;
     int copiesWanted;
-
     cout << "Enter the title of the book you want to borrow: ";
     cin.ignore();
     getline(cin, title);
-
     Book* currentBook = head;
-
     while (currentBook) {
         if (currentBook->title == title) {
             cout << "Enter the number of copies you want to borrow: ";
             cin >> copiesWanted;
-
             if (copiesWanted <= currentBook->numberOfCopies && copiesWanted > 0) {
                 currentBook->numberOfCopies -= copiesWanted;
                 cout << "Book borrowed successfully. Number of copies remaining: " << currentBook->numberOfCopies << endl;
             } else {
                 cout << "Invalid number of copies. Please enter a valid number." << endl;
             }
-
             return;
         }
         currentBook = currentBook->next_book;
     }
-
     cout << "Book not found in the library." << endl;
 }
-
 void removeBook(Book*& head, string title) {
     if (!head) {
         cout << "Library is empty. Cannot remove book." << endl;
         return;
     }
-
     if (head->title == title) {
         Book* temp = head;
         head = head->next_book;
@@ -83,12 +68,10 @@ void removeBook(Book*& head, string title) {
         cout << "Book removed successfully." << endl;
         return;
     }
-
     Book* currentBook = head;
     while (currentBook->next_book && currentBook->next_book->title != title) {
         currentBook = currentBook->next_book;
     }
-
     if (currentBook->next_book) {
         Book* temp = currentBook->next_book;
         currentBook->next_book = currentBook->next_book->next_book;
@@ -98,7 +81,6 @@ void removeBook(Book*& head, string title) {
         cout << "Book not found in the library." << endl;
     }
 }
-
 void searchByTitle(Book* head, string title) {
     Book* currentBook = head;
     while (currentBook) {
@@ -110,7 +92,6 @@ void searchByTitle(Book* head, string title) {
     }
     cout << "Book not found in the library." << endl;
 }
-
 void displayAllBooks(Book* head) {
     Book* currentBook = head;
     while (currentBook) {
@@ -118,11 +99,9 @@ void displayAllBooks(Book* head) {
         currentBook = currentBook->next_book;
     }
 }
-
 int main() {
     Book* library = nullptr;
     int choice;
-
     do {
         cout << "Menu:" << endl;
         cout << "1. Add Book" << endl;
@@ -131,11 +110,8 @@ int main() {
         cout << "4. Display All Books" << endl;
         cout << "5. Borrow Book" << endl;
         cout << "6. Exit" << endl;
-
-
         cout << "Enter your choice: ";
         cin >> choice;
-
         switch (choice) {
             case 1: {
                 string title, author;
@@ -179,6 +155,5 @@ int main() {
                 cout << "Invalid choice. Please try again." << endl;
         }
     } while (choice != 6);
-
     return 0;
 }
