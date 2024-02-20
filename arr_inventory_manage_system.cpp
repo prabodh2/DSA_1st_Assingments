@@ -92,8 +92,7 @@ int main(){
                 cout << "Enter product name to remove: ";
                 cin >> name;
                 a.removeProduct(name);
-                break;
-            }
+                break;}
             case 4:
                 a.displayInventory();
                 break;
