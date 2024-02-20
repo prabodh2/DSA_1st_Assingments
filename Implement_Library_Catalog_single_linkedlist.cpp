@@ -11,7 +11,6 @@ struct Book {
 };
 void addBook(Book*& head, string title, string author, int copies) {
     Book* currentBook = head;
-    
     while (currentBook) {
         if (currentBook->title == title) {
             currentBook->numberOfCopies += copies;
