@@ -10,8 +10,7 @@ public:
     string singer;
     Song* prev;
     Song* next;
-    Song(string t, string s) : title(t), singer(s), prev(NULL), next(NULL) {}
-};
+    Song(string t, string s) : title(t), singer(s), prev(NULL), next(NULL) {} };
 // Class to represent a playlist
 class Playlist {
 public:
